@@ -23,7 +23,7 @@ while True:
         continue
     break
 
-res = requests.get('https://weather.com/weather/today/l/' + zipCode + ':4:US')
+res = requests.get('https://wseather.com/weather/today/l/' + zipCode + ':4:US')
 try:
     res.raise_for_status()
 except Exception as exc:
@@ -31,7 +31,6 @@ except Exception as exc:
 
 weatherSoup = bs4.BeautifulSoup(res.text,features="html.parser")
 mydivs = weatherSoup.findAll("div", {"class": "today_nowcard-temp"})
-
 weather = mydivs[0].getText()
 
 locationdiv = weatherSoup.findAll("h1", {"class": "today_nowcard-location"})
